@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/lottery-game/static/css/main.34de6062.chunk.css",
-    "main.js": "/lottery-game/static/js/main.44b1f315.chunk.js",
-    "main.js.map": "/lottery-game/static/js/main.44b1f315.chunk.js.map",
-    "runtime-main.js": "/lottery-game/static/js/runtime-main.a34a92cb.js",
-    "runtime-main.js.map": "/lottery-game/static/js/runtime-main.a34a92cb.js.map",
-    "static/css/2.2dc0ed06.chunk.css": "/lottery-game/static/css/2.2dc0ed06.chunk.css",
-    "static/js/2.d76c37bf.chunk.js": "/lottery-game/static/js/2.d76c37bf.chunk.js",
-    "static/js/2.d76c37bf.chunk.js.map": "/lottery-game/static/js/2.d76c37bf.chunk.js.map",
-    "index.html": "/lottery-game/index.html",
-    "precache-manifest.37843450158c2054d63242d761498280.js": "/lottery-game/precache-manifest.37843450158c2054d63242d761498280.js",
-    "service-worker.js": "/lottery-game/service-worker.js",
-    "static/css/2.2dc0ed06.chunk.css.map": "/lottery-game/static/css/2.2dc0ed06.chunk.css.map",
-    "static/css/main.34de6062.chunk.css.map": "/lottery-game/static/css/main.34de6062.chunk.css.map"
+    "main.css": "/lottery-game-solidity/static/css/main.34de6062.chunk.css",
+    "main.js": "/lottery-game-solidity/static/js/main.c0567e51.chunk.js",
+    "main.js.map": "/lottery-game-solidity/static/js/main.c0567e51.chunk.js.map",
+    "runtime-main.js": "/lottery-game-solidity/static/js/runtime-main.5d5ab896.js",
+    "runtime-main.js.map": "/lottery-game-solidity/static/js/runtime-main.5d5ab896.js.map",
+    "static/css/2.2dc0ed06.chunk.css": "/lottery-game-solidity/static/css/2.2dc0ed06.chunk.css",
+    "static/js/2.2760a59e.chunk.js": "/lottery-game-solidity/static/js/2.2760a59e.chunk.js",
+    "static/js/2.2760a59e.chunk.js.map": "/lottery-game-solidity/static/js/2.2760a59e.chunk.js.map",
+    "index.html": "/lottery-game-solidity/index.html",
+    "precache-manifest.4e5d16279b77b363222e18856af01fb5.js": "/lottery-game-solidity/precache-manifest.4e5d16279b77b363222e18856af01fb5.js",
+    "service-worker.js": "/lottery-game-solidity/service-worker.js",
+    "static/css/2.2dc0ed06.chunk.css.map": "/lottery-game-solidity/static/css/2.2dc0ed06.chunk.css.map",
+    "static/css/main.34de6062.chunk.css.map": "/lottery-game-solidity/static/css/main.34de6062.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.a34a92cb.js",
+    "static/js/runtime-main.5d5ab896.js",
     "static/css/2.2dc0ed06.chunk.css",
-    "static/js/2.d76c37bf.chunk.js",
+    "static/js/2.2760a59e.chunk.js",
     "static/css/main.34de6062.chunk.css",
-    "static/js/main.44b1f315.chunk.js"
+    "static/js/main.c0567e51.chunk.js"
   ]
 }
