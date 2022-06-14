@@ -21,7 +21,6 @@ function getErrorMessage(error) {
 
 const ButtonConnect = () => {
 	const { connector,  account, activate, deactivate, active, error } = useWeb3React()
-	console.log(error)
 	// handle logic to recognize the connector currently being activated
 	const [activatingConnector, setActivatingConnector] = React.useState()
 	React.useEffect(() => {
