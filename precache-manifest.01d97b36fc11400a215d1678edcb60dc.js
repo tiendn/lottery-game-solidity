@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "03871dbba90ebad6800bad4e061ec19a",
+    "revision": "3a19a0297ae44e7b168135519e4331d8",
     "url": "/lottery-game-solidity/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lottery-game-solidity/static/css/2.2dc0ed06.chunk.css"
   },
   {
-    "revision": "e9f3cb7d356746eead32",
+    "revision": "3694ea06d478623a435b",
     "url": "/lottery-game-solidity/static/css/main.34de6062.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lottery-game-solidity/static/js/2.2760a59e.chunk.js"
   },
   {
-    "revision": "e9f3cb7d356746eead32",
-    "url": "/lottery-game-solidity/static/js/main.729446d0.chunk.js"
+    "revision": "3694ea06d478623a435b",
+    "url": "/lottery-game-solidity/static/js/main.8673c683.chunk.js"
   },
   {
     "revision": "ef46a3644543c2100b07",
