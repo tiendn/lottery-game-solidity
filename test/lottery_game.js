@@ -72,7 +72,7 @@ contract("LotteryGame", function (accounts) {
     const game = await lotteryGame.getGame(gameId);
 
     assert(parseInt(game[0]) == gameId);
-    assert(parseInt(game[3]) == 3);
+    assert(parseInt(game[2]) == 3);
   });
 
   /**
@@ -184,9 +184,9 @@ contract("LotteryGame", function (accounts) {
     const game = await lotteryGame.getGame(gameId);
 
     assert(parseInt(game[0]) == gameId);
-    assert(parseInt(game[3]) == 3);
+    assert(parseInt(game[2]) == 3);
 
     const afterContractBalance = await token.balanceOf(lotteryGame.address);
-    assert(parseInt(beforeContractBalance) - parseInt(afterContractBalance) == (game[2].length * parseInt(game[1]) ))
+    assert(parseInt(beforeContractBalance) - parseInt(afterContractBalance) == (game[3].length * parseInt(game[1]) ))
   });
 });

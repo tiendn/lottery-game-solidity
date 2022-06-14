@@ -64,18 +64,24 @@ contract LotteryGame {
   function getGame(uint _gameId) 
     external 
     view 
-    returns(uint, uint, address[] memory, State) {
+    returns(uint, uint,  State, address[] memory, address[] memory) {
       Game storage game = games[_gameId];
       require(game.state != State.EMPTY, 'game has not created yet!');
+      
       address[] memory players = new address[](game.counter);
+      address[] memory _winners = new address[](winners[_gameId].length);
       for (uint i = 0; i < game.counter; i++) {
         players[i] = game.players[i];
+      }
+      for (uint i = 0; i < winners[_gameId].length; i++) {
+        _winners[i] = winners[_gameId][i];
       }
       return (
         game.id,
         game.bet,
+        game.state,
         players,
-        game.state
+        _winners
       );
     }
 

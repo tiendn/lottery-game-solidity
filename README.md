@@ -1,17 +1,25 @@
 # The lottery game 
 
 ## Solution 
+
 Smart Contract:
-- Lottery Game: https://testnet.bscscan.com/address/0x510efb5d3c62ce4455d9836a1c3ccc14a01f8cb0
-- ERC20 Token: https://testnet.bscscan.com/address/0x6aa4fd863ec4db6cdb65468c34e2b83de3ba4dcf
+- Lottery Game: https://testnet.bscscan.com/address/0x31F2f91E4993E0eC99137DabdD9192bb24C8DCA8
+- ERC20 Token: https://testnet.bscscan.com/address/0x902163Ed629ca73194Bfbcf1198ec700d18eF536
 
 Unit Tests -> [Here](./test/)
 
 UI -> [Here](./client/)
 
+Require: BNB from [faucet](https://testnet.binance.org/faucet-smart)
+
+Deploy with [Truffle](https://trufflesuite.com/) and [BnB Chain Testnet](https://data-seed-prebsc-1-s3.binance.org:8545/)
+
 Results:
-- ![dealer](./results/dealer.png "Title")
-- ![player](./results/player.png "Title")
+- ![deploy](./results/deploy.png "Deploy")
+- ![dealer](./results/dealer.png "Dealer")
+- ![player](./results/player.png "Player")
+- ![endgame](./results/endgame.png "EndGame")
+
 
 ## Requirement
 
