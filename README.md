@@ -1,6 +1,19 @@
 # The lottery game 
 
-**Requirement**
+## Solution 
+Smart Contract:
+- Lottery Game: https://testnet.bscscan.com/address/0x510efb5d3c62ce4455d9836a1c3ccc14a01f8cb0
+- ERC20 Token: https://testnet.bscscan.com/address/0x6aa4fd863ec4db6cdb65468c34e2b83de3ba4dcf
+
+Unit Tests -> [Here](./test/)
+
+UI -> [Here](./client/)
+
+Results:
+- ![dealer](./results/dealer.png "Title")
+- ![player](./results/player.png "Title")
+
+## Requirement
 
 Let's write a smart contract describing a lottery game. A player plays the start game by depositing 1 native coin/token and bet a number. 
 

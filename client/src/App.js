@@ -1,69 +1,33 @@
+import { useWeb3React } from "@web3-react/core";
 import React, { useEffect, useState } from "react";
+import Web3 from "web3";
+
+import ButtonConnect from "./ButtonConnect";
 import LotteryGame from "./contracts/LotteryGame.json";
 import MonToken from "./contracts/Mon.json";
 import { getWeb3 } from "./getWeb3";
 
+
 function App() {
 	const [web3, setWeb3] = useState(undefined);
-	const [accounts, setAccounts] = useState([]);
 	const [lotteryContract, setGameContract] = useState(undefined);
 	const [tokenContract, setTokenContract] = useState(undefined);
 	const [allowance, setAllowance] = useState(0);
 	const [dealer, setDealer] = useState(undefined);
 	const [game, setGame] = useState();
 
-	useEffect(() => {
-		const init = async () => {
-			const web3 = await getWeb3();
-			const accounts = await web3.eth.getAccounts();
-			// const networkId = await web3.eth.net.getId();
-			
-			// const deployedNetworkLotteryGame = LotteryGame.networks[networkId];
-			// const deployedNetworkLotteryGameERC20Token = MonToken.networks[networkId];
-
-			const tokenContract = new web3.eth.Contract(
-				MonToken,
-				'0x9c8a4059b40d19fcd09370db2fb81c8ae94c2dfb'
-				// deployedNetworkLotteryGameERC20Token && deployedNetworkLotteryGameERC20Token.address
-			);
-			
-			const lotteryContract = new web3.eth.Contract(
-				LotteryGame,
-				'0xce0ec13cdbeb3e612bb5550aca4d248345185992'
-			);
-			
-			console.log('address', lotteryContract)
-
-			const _dealer = await lotteryContract.methods.dealer().call();
-			// console.log('aaaa', await tokenContract.methods.balanceOf('0xce0ec13cdbeb3e612bb5550aca4d248345185992').call())
-			// console.log('aaaa', await tokenContract.methods.balanceOf(tokenContract._address).call())
-
-			setWeb3(web3);
-			setTokenContract(tokenContract);
-			setAccounts(accounts);
-			setGameContract(lotteryContract);
-			setDealer(_dealer);
-		};
-		init();
-		window.ethereum.on("accountsChanged", (accounts) => {
-			setAccounts(accounts);
-		});
-	}, []);
+	const { account,  } = useWeb3React()
 
 	const isReady = () => {
 		return (
 			typeof lotteryContract !== "undefined" &&
+			typeof tokenContract !== "undefined" &&
 			typeof web3 !== "undefined" &&
-			typeof accounts !== "undefined"
+			typeof account !== "undefined"
 		);
 	};
 
-	useEffect(() => {
-		if (isReady()) {
-			updateGame();
-			checkAllowence();
-		}
-	}, [accounts]);
+	
 
 	async function updateGame() {
 		try {
@@ -71,7 +35,6 @@ function App() {
 			gameId = gameId > 0 ? gameId - 1 : gameId;
 
 			const game = await lotteryContract.methods.getGame(gameId).call();
-			console.log(game);
 			setGame({
 				id: game[0],
 				bet: game[1],
@@ -85,7 +48,7 @@ function App() {
 
 	const checkAllowence = async () => {
 		try {
-			const allowance = await tokenContract.methods.allowance(accounts[0], lotteryContract._address).call();
+			const allowance = await tokenContract.methods.allowance(account, lotteryContract._address).call();
 			setAllowance(allowance);
 		} catch (err) {
 			console.log(err);
@@ -95,7 +58,7 @@ function App() {
 
 	const makeApprove = async (value) => {
 		try {
-			await tokenContract.methods.approve(value).send({ from: accounts[0] });
+			await tokenContract.methods.approve(value).send({ from: account });
 		} catch (err) {
 			console.log(err);
 			alert(err.message);
@@ -106,7 +69,7 @@ function App() {
 		e.preventDefault();
 		try {
 			const betValue = e.target.elements[0].value;
-			await lotteryContract.methods.createGame(betValue).send({ from: accounts[0] });
+			await lotteryContract.methods.createGame(betValue).send({ from: account });
 			await updateGame();
 		} catch (err) {
 			console.log(err);
@@ -118,9 +81,10 @@ function App() {
 		e.preventDefault();
 		if (!tokenContract) return;
 
-		const address = e.target.elements[0].value;
+		const address = e.target.elements[0].value.trim();
+		console.log(tokenContract.methods)
 		try {
-			await tokenContract.methods.faucet(address, 10000).send({from: accounts[0]})
+			await tokenContract.methods.faucet(address, 10000).send({from: account})
 		} catch (err) {
 			console.log(err);
 			alert(err.message);
@@ -141,7 +105,7 @@ function App() {
 			const salt = Math.floor(Math.random() * 1000);
 			await lotteryContract.methods
 				.commitMove(game.id, betValue, salt)
-				.send({ from: accounts[0] });
+				.send({ from: account });
 			await updateGame();
 		} catch (err) {
 			console.log(err);
@@ -152,15 +116,49 @@ function App() {
 	async function stopGame(e) {
 		e.preventDefault();
 
-		await lotteryContract.methods.stopGame(game.id).send({ from: accounts[0] });
+		await lotteryContract.methods.stopGame(game.id).send({ from: account });
 		await updateGame();
 	}
 
-	console.log(game);
-	console.log(dealer, accounts);
-	console.log(typeof dealer != "undefined", accounts[0] == dealer);
-	const isDealer = typeof dealer != "undefined" && accounts[0] == dealer;
-	console.log(isDealer);
+	const init = async () => {
+		const web3 = await getWeb3();
+		// const networkId = await web3.eth.net.getId();
+		// const deployedNetworkLotteryGame = LotteryGame.networks[networkId];
+		// const deployedNetworkLotteryGameERC20Token = MonToken.networks[networkId];
+		const tokenContract = new web3.eth.Contract(
+			MonToken.abi,
+			// deployedNetworkLotteryGameERC20Token && deployedNetworkLotteryGameERC20Token.address
+			'0x7a25b8352D46E39347A082Fd920f0Eb0108ab8dA'
+		);
+		
+		const lotteryContract = new web3.eth.Contract(
+			LotteryGame.abi,
+			// deployedNetworkLotteryGame && deployedNetworkLotteryGame.address
+			'0x7F59F3Ca0782de6Dcd91AafDaF67FE473af5A52d'
+		);
+		
+		const _dealer = await lotteryContract.methods.dealer().call();
+
+		setWeb3(web3);
+		setTokenContract(tokenContract);
+		setGameContract(lotteryContract);
+		setDealer(_dealer);
+	};
+
+	useEffect(() => {
+		if (isReady()) {
+			updateGame();
+			checkAllowence();
+		}
+	}, [account]);
+
+	useEffect(() => {
+		console.log("sfasdfasd",account)
+		if (account)
+			init();
+	}, [account]);
+
+	const isDealer = typeof dealer != "undefined" && account == dealer;
 
 	const FormFaucet = () => (
 		<form onSubmit={(e) => mintToken(e)}>
@@ -274,20 +272,19 @@ function App() {
 	);
 
 	return (
-		<div className="container">
-			
-			<h1 className="text-center">Lottery Game</h1>
-			<FormFaucet />
-			<div style={{height: 50}} />
+		
+			<div className="container">
+				<ButtonConnect />
+				<h1 className="text-center">Lottery Game</h1>
+				<FormFaucet />
+				<div style={{height: 50}} />
 
-			{accounts.length == 0 ? (
-				"Please connect your wallet"
-			) : isDealer ? (
-				<DealerComponent />
-			) : (
-				<PlayerComponent />
-			)}
-		</div>
+				{isDealer ? 
+					<DealerComponent />
+				: 
+					<PlayerComponent />
+				}
+			</div>
 	);
 }
 

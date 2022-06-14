@@ -78,6 +78,7 @@ module.exports = {
   
     // Set default mocha options here, use special reporters etc.
     mocha: {
+      useColors: true
       // timeout: 100000
     },
   
@@ -106,18 +107,14 @@ module.exports = {
       develop: {
         host: "127.0.0.1",     // Localhost (default: none)
         port: 8545,            // Standard BSC port (default: none)
-        network_id: "*",       // Any network (default: none)
+        network_id: "1337",       // Any network (default: none)
       },
       testnet: {
-        provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://data-seed-prebsc-2-s1.binance.org:8545/`),
-        // host: "data-seed-prebsc-1-s1.binance.org",
-        // provider: new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"),
-        // port: 8545,
+        provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://data-seed-prebsc-1-s1.binance.org:8545/`),
         network_id: 97,
         confirmations: 10,
         timeoutBlocks: 200,
         skipDryRun: true,
-        // from: 0x318c1980e654a4be9a463b84edd31d9ac1004626,
       },
     }
     // Truffle DB is currently disabled by default; to enable it, change enabled:

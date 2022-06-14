@@ -1,21 +1,28 @@
 {
-	"name": "client",
+	"name": "lottery-game",
 	"version": "0.1.0",
 	"private": true,
+	"homepage": "https://tiendn.github.io/lottery-game-solidity",
 	"dependencies": {
+		"@ethersproject/providers": "^5.6.8",
+		"@web3-react/core": "^6.1.9",
+		"@web3-react/injected-connector": "^6.0.7",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "3.2.0",
 		"web3": "^1.6.1"
 	},
 	"devDependencies": {
-		"bootstrap": "^4.3.1"
+		"bootstrap": "^4.3.1",
+		"gh-pages": "^4.0.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
